@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+      <ion-toolbar>
+             <!-- Hamburger -->
+             <ion-buttons slot="start">
+                        <ion-menu-button autoHide="false"></ion-menu-button>
+              </ion-buttons>
+             <ion-title>Altas</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+      <ion-card-content>
+            <form (ngSubmit)="crearAlumno()"><br>
+                  <ion-item>
+                        <ion-input placeholder="Nombre" type="text" name="nombre" [(ngModel)]="alumno.nombre"></ion-input>
+                  </ion-item><br>
+                  <ion-item>
+                        <ion-input placeholder="1er Apellido" type="text" name="apellido1" [(ngModel)]="alumno.apellido1"></ion-input>
+                  </ion-item><br>
+                  <ion-item>
+                        <ion-input placeholder="2do Apellido" type="text" name="apelldio2" [(ngModel)]="alumno.apellido2"></ion-input>
+                  </ion-item><br>
+                  <ion-item>
+                        <ion-datetime  style="width: 100%;" placeholder="Fecha De Nacimiento" name="date" display-format="YYYY-MM-DD" [(ngModel)]="alumno.fechaNac"></ion-datetime>
+                        <ion-icon name="calendar"></ion-icon>
+                  </ion-item><br>
+                  <ion-item>
+                        <ion-input placeholder="Email" type="text" name="email" [(ngModel)]="alumno.email" ></ion-input>
+                  </ion-item><br>
+                  <ion-item>
+                        <ion-input placeholder="Password" type="password" name="password" [(ngModel)]="alumno.password"></ion-input>
+                  </ion-item><br>
+                  <ion-button expand="full" color="primary" type="submit" block>Siguiente</ion-button> 
+            </form><br>
+      </ion-card-content>
+</ion-content>

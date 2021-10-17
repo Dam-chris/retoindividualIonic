@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>alumnos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card-content> 
+    <ion-item>Alumnos:</ion-item>
+    <ion-list class="text-center">
+      <ion-item *ngFor="let alumno of alumnos"> 
+        <div class="cursos">{{alumno.nombre}}</div> 
+      </ion-item> 
+    </ion-list>
+    <ion-button expand="full" [routerLink]="['/inicio']" >Volver</ion-button>
+  </ion-card-content>
+</ion-content>

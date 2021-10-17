@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+      <!-- Hamburger -->
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card-header>
+    <ion-item>
+      <ion-img class="logoAlmi" src="/assets/logos/almi.jpeg"></ion-img>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content> 
+    <ion-item>Cursos:</ion-item>
+    <ion-list class="text-center">
+      <ion-item *ngFor="let curso of cursos" button (click)="getAlumnos(curso)"> 
+        <div class="cursos">{{curso.nombre}}</div> 
+      </ion-item> 
+    </ion-list>
+  </ion-card-content>
+</ion-content>
