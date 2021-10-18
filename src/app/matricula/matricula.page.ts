@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, RouteReuseStrategy } from '@angular/router';
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { Curso } from '../curso';
 import { Matricula } from '../matricula';
@@ -14,9 +15,7 @@ import { CursosService } from '../servicios/cursos.service';
 export class MatriculaPage implements OnInit 
 {
   cursos:Curso[] = [];
-  alumnoData:any;
-  public matricula:Matricula = {'id':-1, 'fecha':new Date(),'cursoId':-1, 'alumnoId':-1};
-  public id:any = 0;
+  public matricula:Matricula = {'id':-1, 'fecha': new Date(),'cursoId':-1, 'alumnoId':-1};
 constructor(public router:Router, 
     private loadingController:LoadingController, 
     private alumnosService:AlumnosService,
@@ -26,8 +25,7 @@ constructor(public router:Router,
   if (router.getCurrentNavigation().extras.state) 
   {
     const alumnoData = this.router.getCurrentNavigation().extras.state;
-    console.log(alumnoData)
-    this.alumnoData = alumnoData; 
+    this.matricula.alumnoId = alumnoData.id;
   }
 }
 async getCursosHome()
@@ -44,12 +42,14 @@ async getCursosHome()
 //crear matricula
 crearMatricula()
 {
+  
   if(this.matricula.cursoId == -1|| this.matricula.alumnoId == -1)
   {
     this.errAlert();
   }
   else
   {
+   
     this.addMatricula();
     this.router.navigateByUrl('inicio');
   }
@@ -83,19 +83,15 @@ async addMatricula()
         loading.dismiss();
       });
   }
-  public cursoId(): void { //here item is an object 
-    let item = this.id;
-    console.log(this.id);
+  public cursoId(): void 
+  { //here item is an object 
+    console.log(this.matricula.cursoId)
     
   }
   
   ngOnInit() 
   {
-    this.matricula.alumnoId = this.alumnoData.id;
     this.getCursosHome();
-   
-    console.log(this.alumnoData);
-    
   }
 
 }

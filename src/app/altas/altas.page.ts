@@ -30,7 +30,6 @@ crearAlumno()
   else
   {
     this.altaAlumno();
-    this.navCtrl.navigateForward('matricula', {state: this.alumno});
   }
 }
 
@@ -54,7 +53,8 @@ async altaAlumno()
     await loading.present();
     await this.alumnoService.addAlumno(this.alumno)
       .subscribe(res => {
-        console.log(res);
+        //enviar los datos del alumno creado a matricula
+        this.navCtrl.navigateForward('matricula', {state: res});
         loading.dismiss();
       }, err =>{
         console.log(err);

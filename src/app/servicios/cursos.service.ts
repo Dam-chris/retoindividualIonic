@@ -14,7 +14,7 @@ const httpOptions = {
 
 export class CursosService 
 {
-  public url = "http://localhost:8000/ws/cursos";
+  public url = "http://192.168.176.183:8000/ws/cursos";
   constructor(private httpClient: HttpClient) { }
 
   getCursos():Observable<Curso[]>
