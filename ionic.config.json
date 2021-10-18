@@ -1,5 +1,7 @@
 {
   "name": "retoIndividual",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

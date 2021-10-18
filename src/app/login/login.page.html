@@ -10,12 +10,12 @@
 
 <ion-content class="ion-padding">
   <ion-card-content>
-        <form action="post"><br>
+        <form (ngSubmit)="comprobarLogin()"><br>
               <ion-item>
-                    <ion-input placeholder="Email" type="text" name="nombre" ></ion-input>
+                    <ion-input placeholder="Email" type="text" name="nombre" [(ngModel)]="usuario.email"></ion-input>
               </ion-item><br>
               <ion-item>
-                    <ion-input placeholder="Password" type="password" name="apellido1" ></ion-input>
+                    <ion-input placeholder="Password" type="password" name="apellido1" [(ngModel)]="usuario.password"></ion-input>
               </ion-item><br>
               <ion-button expand="full" color="primary" type="submit" block>Enviar</ion-button> 
         </form><br>

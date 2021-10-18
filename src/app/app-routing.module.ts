@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'matricula',
     loadChildren: () => import('./matricula/matricula.module').then( m => m.MatriculaPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
   }
 ];
 

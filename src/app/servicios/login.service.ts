@@ -9,10 +9,10 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
-export class LoginServiceService 
+//192.168.176.183 ip de maquina symfony
+export class LoginService
 {
-  public url = "http://192.168.176.183:8000/ws/login";
+  public url = "http://localhost:8000/ws/login";
   constructor(private httpClient: HttpClient) { }
 
   combrobarUsuario(usuario:Usuario)

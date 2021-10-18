@@ -16,6 +16,7 @@ export class MatriculaPage implements OnInit
 {
   cursos:Curso[] = [];
   public matricula:Matricula = {'id':-1, 'fecha': new Date(),'cursoId':-1, 'alumnoId':-1};
+
 constructor(public router:Router, 
     private loadingController:LoadingController, 
     private alumnosService:AlumnosService,
@@ -28,7 +29,7 @@ constructor(public router:Router,
     this.matricula.alumnoId = alumnoData.id;
   }
 }
-async getCursosHome()
+async getCursos()
   {
     await this.cursosService.getCursos()
     .subscribe(res =>
@@ -91,7 +92,7 @@ async addMatricula()
   
   ngOnInit() 
   {
-    this.getCursosHome();
+    this.getCursos();
   }
 
 }
