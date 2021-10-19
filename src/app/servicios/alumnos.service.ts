@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class AlumnosService 
 {
-  public url = "http://localhost:8000/ws/alumnos";
+  public url = "http://192.168.176.183:8000/ws/alumnos";
   constructor(private httpClient: HttpClient) { }
   getAlumnos():Observable<Alumno[]>
   {

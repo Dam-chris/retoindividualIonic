@@ -1,7 +1,5 @@
 
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-root',
@@ -22,9 +20,10 @@ export class AppComponent
       icon: 'at' 
     }
   ];
-  constructor(private userData:Storage, 
-            private alertController:AlertController,
-            private router:Router) {}
+
+  usuario:any[] = [];
+
+  constructor(private userData:Storage) {}
 
   cargarMenu()
   {
@@ -39,10 +38,21 @@ export class AppComponent
      });
      this.userData.get("rol").then((result) =>
      {
+        this.usuario.splice(0, 0, result);
+
        if ( result == 'ROLE_ADMIN') 
        {
-         this.appPages.splice(1,0,{ title: 'Altas', url: '/altas', icon: 'add'},); 
+          this.appPages.splice(1,0,{ title: 'Altas', url: '/altas', icon: 'add'},);
        }
+       if( result == 'ROLE_USER')
+       {
+          this.appPages[0].url = "/asignaturas";
+       }
+     });
+     this.userData.get("data").then((result)=>
+     {
+       this.usuario.splice(1, 0, result.nombre);
+       this.usuario.splice(2, 0, result.apellido1)
        
      });
   }

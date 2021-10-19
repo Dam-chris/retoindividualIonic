@@ -3,12 +3,11 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-item button>
-            <ion-list-header><ion-img class="perfilimg" src="assets/logos/perfil.png"></ion-img></ion-list-header>
-            <ion-list>
-              <ion-label>Usuario</ion-label>
-              <ion-label>DAM1</ion-label>
-            </ion-list>
+          <ion-item button routerLink="cambiar-perfil">
+            <ion-thumbnail slot="start">
+              <ion-img class="perfilimg" src="assets/logos/perfil.png"></ion-img>
+            </ion-thumbnail>
+            <ion-label>{{ usuario[1] }} {{ usuario[2]}}<br> {{ usuario[0] }} </ion-label>
           </ion-item>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

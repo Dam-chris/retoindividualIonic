@@ -55,9 +55,10 @@ export class LogoutPage implements OnInit {
   ngOnInit() 
   {
     //cerrar sesinon
-    this.userData.remove("emial");
+    this.userData.remove("email");
     this.userData.remove("password");
     this.userData.remove("rol");
+    this.userData.remove("id");
     //redirect a inicio
     this.router.navigateByUrl('inicio')
     .then(() =>

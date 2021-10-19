@@ -30,6 +30,14 @@ const routes: Routes = [
   {
     path: 'logout',
     loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
+    path: 'asignaturas',
+    loadChildren: () => import('./asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
+  },
+  {
+    path: 'cambiar-perfil',
+    loadChildren: () => import('./cambiar-perfil/cambiar-perfil.module').then( m => m.CambiarPerfilPageModule)
   }
 ];
 

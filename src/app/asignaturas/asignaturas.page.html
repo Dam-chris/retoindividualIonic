@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asignaturas</ion-title>
+    <!-- Hamburger -->
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-header>
+    <ion-item>
+      <ion-img class="logoAlmi" src="/assets/logos/almi.jpeg"></ion-img>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content> 
+    <ion-item>Notas:</ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label><strong>Asignatura</strong></ion-label>
+        <ion-label><strong>Nota</strong></ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let nota of notas"> 
+        <ion-label>{{ nota.nombre }}</ion-label>
+        <ion-label>{{ nota.nota }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-content>

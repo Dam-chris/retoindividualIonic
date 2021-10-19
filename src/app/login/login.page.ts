@@ -14,6 +14,7 @@ export class LoginPage implements OnInit
 {
   usuario:Usuario = {'id': -1, 'email': '', 'password': ''};
   data:any;
+  paginaDestino:string;
 
   constructor(private loadingController:LoadingController, 
               private alertController:AlertController,
@@ -60,18 +61,31 @@ async enviarLogin()
         /*
           Guardado de datos en local storage para manejo de la sesion
         */
-        this.userData.set("id", this.data.id)
+        this.userData.set("id", this.data.id);
+        this.userData.set("nombre", this.data.nombre);
         this.userData.set("email", this.data.email);
         this.userData.set("password", this.data.password);
         this.userData.set("rol", this.data.rol.nombre );
+        this.userData.set("data", this.data);
 
-        loading.dismiss();
+        if ( this.data.rol.nombre == 'ROLE_ADMIN') 
+        {
+            this.paginaDestino = 'inicio';
+        }
+        if( this.data.rol.nombre == 'ROLE_USER')
+        {
+            this.paginaDestino = 'asignaturas';
+        }
+       
         //redirect a inicio
-        this.router.navigateByUrl('inicio')
+        this.router.navigateByUrl(this.paginaDestino)
         .then(() => 
         {
           this.principal.cargarMenu();
         });
+
+        loading.dismiss();
+        
       }, err =>
       {
         if (err.status == 404 || err.status == 500) 
@@ -97,7 +111,7 @@ async enviarLogin()
   
   ngOnInit() 
   {
-      
+    
   }
 
 }

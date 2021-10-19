@@ -52,7 +52,14 @@ public getUserData() {
 getAlumnos(curso)
 {
   console.log(curso);
-  this.navCtrl.navigateForward('alumnos', {state: curso});
+  this.userData.get("rol").then((result) =>
+  {
+    if(result == "ROLE_ADMIN")
+    {
+      this.navCtrl.navigateForward('alumnos', {state: curso});
+    }
+   
+  });
 }
 
   ngOnInit() 
@@ -65,8 +72,6 @@ getAlumnos(curso)
     {
       console.log(d);
     });
-    
-    
   }
 
 }
