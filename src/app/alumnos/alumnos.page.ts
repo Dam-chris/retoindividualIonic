@@ -19,9 +19,8 @@ export class AlumnosPage implements OnInit
   { 
     if (router.getCurrentNavigation().extras.state) 
     {
-      const curso = this.router.getCurrentNavigation().extras.state;
-      console.log(curso)
-      this.curso = curso; 
+      this.curso = this.router.getCurrentNavigation().extras.state;
+      console.log(this.curso) 
     }
   }
   async getAlumnos()

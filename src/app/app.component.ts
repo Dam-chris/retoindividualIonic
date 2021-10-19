@@ -21,9 +21,16 @@ export class AppComponent
     }
   ];
 
-  usuario:any[] = [];
-
+  usuario = {rol:'', nombre:'', apellido1:'', imagen:''};
+  link:string = '';
+  
   constructor(private userData:Storage) {}
+
+
+  cargaImg(imagen:string)
+  {
+    this.usuario.imagen = imagen;
+  }
 
   cargarMenu()
   {
@@ -38,7 +45,7 @@ export class AppComponent
      });
      this.userData.get("rol").then((result) =>
      {
-        this.usuario.splice(0, 0, result);
+        this.usuario.rol = result;
 
        if ( result == 'ROLE_ADMIN') 
        {
@@ -48,12 +55,15 @@ export class AppComponent
        {
           this.appPages[0].url = "/asignaturas";
        }
+       if ( result != null) 
+       {
+          this.link = "cambiar-perfil";
+       }
      });
      this.userData.get("data").then((result)=>
      {
-       this.usuario.splice(1, 0, result.nombre);
-       this.usuario.splice(2, 0, result.apellido1)
-       
+        this.usuario.nombre = result.nombre;
+        this.usuario.apellido1 = result.apellido1;
      });
   }
 }

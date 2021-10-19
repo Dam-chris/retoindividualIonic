@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class NotasService 
 {
-  public url = "http://192.168.176.183:8000/ws/notas";
+  public url = "http://localhost:8000/ws/notas";
 
   constructor(private httpClient: HttpClient) { }
 

@@ -67,11 +67,7 @@ getAlumnos(curso)
     
     this.getCursosHome();
     
-    this.getUserData()
-    .then((d) => 
-    {
-      console.log(d);
-    });
+    this.getUserData();
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, forwardRef, Inject, OnInit } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { LoginService } from '../servicios/login.service';
 import { Usuario } from '../Usuario';
 import { Storage } from '@ionic/storage';
@@ -21,7 +21,8 @@ export class LoginPage implements OnInit
               private loginService:LoginService,
               private userData:Storage,
               private router:Router,
-              @Inject(forwardRef(() => AppComponent))private principal: AppComponent) 
+              @Inject(forwardRef(() => AppComponent))private principal: AppComponent,
+              private toastController:ToastController) 
               { }
 //mensaje de error
 async errAlert() {
@@ -82,6 +83,7 @@ async enviarLogin()
         .then(() => 
         {
           this.principal.cargarMenu();
+          this.presentToast();
         });
 
         loading.dismiss();
@@ -94,6 +96,15 @@ async enviarLogin()
         }
         loading.dismiss();
       });
+  }
+  async presentToast() 
+  {
+    const toast = await this.toastController.create(
+      {
+        message: 'Has iniciado sesion correctamente.',
+        duration: 2000
+      });
+    toast.present();
   }
 
   comprobarLogin()

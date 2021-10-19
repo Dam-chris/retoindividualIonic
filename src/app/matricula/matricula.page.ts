@@ -84,11 +84,7 @@ async addMatricula()
         loading.dismiss();
       });
   }
-  public cursoId(): void 
-  { //here item is an object 
-    console.log(this.matricula.cursoId)
-    
-  }
+  public cursoId(){}
   
   ngOnInit() 
   {

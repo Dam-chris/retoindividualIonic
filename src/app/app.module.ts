@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { CursosService } from './servicios/cursos.service';
 import  { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+//camra
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
-  providers: [CursosService, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [CursosService, Camera, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
