@@ -1,6 +1,8 @@
 
 import { Component } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { PhotoService } from './servicios/photo.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,12 +26,27 @@ export class AppComponent
   usuario = {rol:'', nombre:'', apellido1:'', imagen:''};
   link:string = '';
   
-  constructor(private userData:Storage) {}
+  constructor(private userData:Storage, 
+    private loadingController:LoadingController,
+    private photoService:PhotoService) {}
 
 
-  cargaImg(imagen:string)
+  async getphotoProfile(usuarioId)
   {
-    this.usuario.imagen = imagen;
+    const loading = await this.loadingController.create({ message: 'Cargando...' });
+    await loading.present(); 
+    await this.photoService.getPhoto(usuarioId)
+    .subscribe(res =>
+      {
+        this.usuario.imagen = res.fotoperfil;
+        console.log(res);
+        
+        loading.dismiss();
+      }, err =>
+      {
+        console.log(err); 
+        loading.dismiss(); 
+      });
   }
 
   cargarMenu()
@@ -64,6 +81,8 @@ export class AppComponent
      {
         this.usuario.nombre = result.nombre;
         this.usuario.apellido1 = result.apellido1;
+
+        this.getphotoProfile(result.id);
      });
   }
 }

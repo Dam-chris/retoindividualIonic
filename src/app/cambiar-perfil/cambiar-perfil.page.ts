@@ -1,7 +1,9 @@
-import { Component, forwardRef, Inject, OnInit } from '@angular/core';
+import { Component, forwardRef, Inject, Injectable, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { AppComponent } from '../app.component';
+import { PhotoService } from '../servicios/photo.service';
 @Component({
   selector: 'app-cambiar-perfil',
   templateUrl: './cambiar-perfil.page.html',
@@ -10,17 +12,20 @@ import { AppComponent } from '../app.component';
 export class CambiarPerfilPage implements OnInit {
 
   clickedImage: string;
+  data = { 'alumnoId': -1, 'fotoperfil':'' };
 
   options: CameraOptions = {
-    quality: 30,
+    quality: 15,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
-
+ 
   constructor(private camera: Camera,
               private userData: Storage,
-              @Inject(forwardRef(() => AppComponent))private principal: AppComponent) { }
+              private loadingController:LoadingController,
+              private photoService:PhotoService,
+              @Inject(forwardRef(() => AppComponent)) private principal: AppComponent) { }
 
   captureImage() 
   {
@@ -33,10 +38,17 @@ export class CambiarPerfilPage implements OnInit {
       //gurado la imagen en la bbddlocal
       this.userData.get("data").then((result) =>
       {
-          this.userData.set(result.id+"", this.clickedImage);
-      });
+          //pasrle los datos al servicio que hace put de l aimagen de eprfil en usuario
+          this.data.alumnoId = result.id;
+          this.data.fotoperfil = this.clickedImage;
+          console.log(this.data);
+          
+          
+          this.setImage(this.data);
 
-      this.principal.cargaImg(this.clickedImage);
+          //mostrar la imagen
+          this.principal.getphotoProfile(result.id);
+      });
 
     },(err) => 
     {
@@ -44,18 +56,27 @@ export class CambiarPerfilPage implements OnInit {
       // Handle error
     });
   }
+  getImg(data)
+  {
+
+  }
+  //enviar img
+  async setImage(datos:any)
+  {
+    await this.photoService.saveImage(datos)
+      .subscribe(res => 
+        {
+          console.log(res);
+
+        }, err =>
+        {
+          console.log(err);
+        });
+  }
 
   ngOnInit() 
   {
-    this.userData.get("data").then((result) =>
-    { 
-        this.userData.get(result.id+"").then((result) =>
-        {
-          console.log(result);
-            this.clickedImage = result;
-            this.principal.cargaImg(result);
-        });
-    });
+    
   }
 //arancar la app desde el navegador: ionic cordova run browser
 //si se queda crasheado con problema de dependencias al hacerr ionic serve -l npm i @ionic/core

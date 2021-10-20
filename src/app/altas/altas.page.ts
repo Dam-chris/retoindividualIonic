@@ -13,7 +13,7 @@ export class AltasPage
 {
   public alumno:Alumno = { 'id': -1, 'nombre': '','apellido1':'',
                     'apellido2':'', 'fechaNac':new Date(), 'email':'',
-                    'password':'', 'rol_id':2};
+                    'password':'', 'fotoperfil':'', 'rol_id':2};
 
   constructor(private loadingController: LoadingController,
     private alertController: AlertController,

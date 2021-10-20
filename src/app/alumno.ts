@@ -7,5 +7,6 @@ export class Alumno
     fechaNac: Date;
     email: string;
     password: string;
+    fotoperfil:string;
     rol_id: number;
 }
