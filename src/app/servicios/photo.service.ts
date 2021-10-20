@@ -13,7 +13,7 @@ const httpOptions = {
 export class PhotoService 
 {
 
-  public url = "http://localhost:8000/ws/imagenes";
+  public url = "http://192.168.176.183:8000/ws/imagenes";
   
   constructor(private httpClient: HttpClient) { }
   

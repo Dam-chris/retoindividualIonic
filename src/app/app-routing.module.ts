@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'cambiar-perfil',
     loadChildren: () => import('./cambiar-perfil/cambiar-perfil.module').then( m => m.CambiarPerfilPageModule)
+  },
+  {
+    path: 'desmatricular',
+    loadChildren: () => import('./desmatricular/desmatricular.module').then( m => m.DesmatricularPageModule)
   }
 ];
 

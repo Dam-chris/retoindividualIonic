@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from '../Usuario';
 
 const httpOptions = { 
   headers: new HttpHeaders({'Content-Type': 'application/json'}) 
@@ -9,14 +8,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-//192.168.176.183 ip de maquina symfony
-export class LoginService
+export class MatriculaService 
 {
-  public url = "http://192.168.176.183:8000/ws/login";
+  public url = "http://192.168.176.183:8000/ws/matricula";
+
   constructor(private httpClient: HttpClient) { }
 
-  combrobarUsuario(usuario:Usuario)
+  deleteMatricula(alumnoId)
   {
-    return this.httpClient.post(this.url, usuario);
+    return this.httpClient.delete(this.url + "/delete/" + alumnoId);
   }
 }

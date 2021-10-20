@@ -66,11 +66,12 @@ export class AppComponent
 
        if ( result == 'ROLE_ADMIN') 
        {
-          this.appPages.splice(1,0,{ title: 'Altas', url: '/altas', icon: 'add'},);
+          this.appPages.splice(1,0,{ title: 'Altas', url: '/altas', icon: 'add'});
        }
        if( result == 'ROLE_USER')
        {
           this.appPages[0].url = "/asignaturas";
+          this.appPages.splice(2,0,{title:"Desmatricular", url:"/desmatricular", icon:"trash" });
        }
        if ( result != null) 
        {

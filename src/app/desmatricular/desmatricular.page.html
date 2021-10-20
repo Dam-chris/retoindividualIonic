@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>desmatricular</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card-content>
+    <form (ngSubmit)="borrarMatricula()"><br>
+        <ion-item>
+            <ion-select style="width: 100%;" placeholder="Selecciona un curso" [(ngModel)]="cursoNom" [ngModelOptions]="{standalone: true}" (ionChange)="cursoId();" >
+                <ion-select-option *ngFor="let curso of cursos" [value]="curso.nombre">{{ curso.nombre }}</ion-select-option>
+            </ion-select>
+        </ion-item><br>
+        <ion-button expand="full" color="primary" type="submit" block>Borrar</ion-button>
+      </form>
+</ion-card-content>
+</ion-content>

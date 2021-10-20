@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
@@ -18,7 +19,8 @@ export class AltasPage
   constructor(private loadingController: LoadingController,
     private alertController: AlertController,
     private alumnoService:AlumnosService,
-    private navCtrl: NavController) { }
+    private navCtrl: NavController,
+    private dataCurso:Storage) { }
 
 //crear alumno
 crearAlumno()
@@ -52,7 +54,8 @@ async altaAlumno()
     });
     await loading.present();
     await this.alumnoService.addAlumno(this.alumno)
-      .subscribe(res => {
+      .subscribe(res => 
+        {     
         //enviar los datos del alumno creado a matricula
         this.navCtrl.navigateForward('matricula', {state: res});
         loading.dismiss();
